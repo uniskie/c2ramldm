@@ -1,0 +1,38 @@
+--------------------------------------------------------------------------------
+MegaRam Loader for Carnivore2 (mod)
+
+c2ramldm
+->後挿し機能追加版 c2ramldr
+--------------------------------------------------------------------------------
+original: Updated 15.03.2020 to version 2.30
+https://github.com/RBSC/Carnivore2/blob/master/Util/c2ramldr.asm
+
+additional function (Main Menu)
+ 4 - Enable writed ROM image, and exit to MSX-DOS
+     書き込んだROMをその場で有効化してDOSに戻ります。
+     （後挿しした状態になる）
+
+additional command line option
+ /e  - enable ROM image and exit after uploading the ROM
+
+       ROMイメージを書き込んだらその場で有効化してDOSに戻ります。
+
+       ・Carnivore2のコンフィグレジスタは#0F80に移動されます。
+	 （#4F80に配置すると#4F84にROMイメージと違う値が出現するのを避ける為）
+
+       ・Carnivore2の他のサブスロット設定は現状維持されます。
+	 （SCC音源、FMPAC+SRAMなどの状態）
+
+ /f  - force detect slot(force write reset config)	
+
+       Carnivore2のスロット検出時、
+       ブートイメージバンクが隠されていてスロット検出できない場合でも、
+       コンフィグレジスター初期化を試みて強制検出します。
+
+       【警告】
+       Carnivore2以外に#0F80,#4F80-#4FAFの範囲にメモリマップドI/Oがある機器は
+       スロット1や2に挿さないようにしてください。誤動作を起こす可能性があります。
+
+       【用途】
+       1)読み込んだROMを有効化した後。
+       2)SofaRunでロムイメージをロードした後に実行をキャンセルした後。

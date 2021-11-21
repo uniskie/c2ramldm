@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------------
+MegaRam Loader for Carnivore2 (mod)
+
+c2ramldm
+-> Post-insertion function added c2ramldr
+--------------------------------------------------------------------------------
+original: Updated 15.03.2020 to version 2.30
+https://github.com/RBSC/Carnivore2/blob/master/Util/c2ramldr.asm
+
+additional function (Main Menu)
+ 4 - Enable writed ROM image, and exit to MSX-DOS
+
+additional command line option
+ /e  - enable ROM image and exit after uploading the ROM
+
+       After the ROM image is written, it is activated and returns to DOS.
+       (ROM image is not executed but only Activate.)
+
+       The configuration-register of Carnivore2 is moved to #0F80.
+       (to avoid the appearance of a different value than the ROM image 
+        in #4F84 if it is placed in #4F80)
+
+       The other sub-slots in Carnivore 2 will remain as they are.
+	 (SCC sound source, FMPAC+SRAM, etc.)
+
+ /f  - force detect slot(force write reset config)
+
+       When Carnivore2 detects a slot, the
+       If the boot image bank is hidden and slot detection is not possible,
+       the Forced detection by attempting to initialize the config register.
+
+       [Warning]
+       Other devices than Carnivore2 (with memory-mapped I/O in the range of
+       #0F80 and #4F80-#4FAF) are
+       Do not insert it into slot 1 or 2. It may cause a malfunction.
+
+       [Use]
+       1) After activating the loaded ROM.
+       2) After loading the ROM image on SofaRun and then canceling the execution.
+
